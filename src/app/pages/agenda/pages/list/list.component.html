@@ -1,0 +1,25 @@
+<app-header />
+
+<table mat-table [dataSource]="contactos" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre y Apellido </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} {{element.last_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Telefono </th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-button color="primary" [routerLink]="['view', element.id]" >Editar</button>
+        <button mat-button color="warn" (click)="deleteContact(element.id)" >Eliminar</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="mostrarColumnasTabla"></tr>
+    <tr mat-row *matRowDef="let row; columns: mostrarColumnasTabla;"></tr>
+  </table>

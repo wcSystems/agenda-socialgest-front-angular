@@ -1,0 +1,40 @@
+<app-header />
+<form class="example-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" >
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" placeholder="Anthony" formControlName="name">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput type="text" placeholder="Carriedo" formControlName="last_name">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput type="number" placeholder="584121482348" formControlName="phone">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Correo Electonico</mat-label>
+                    <input matInput type="text" placeholder="anthonycarriedo2013@gmail.com" formControlName="email">
+                </mat-form-field>
+            </td>
+        </tr>
+        <div class="example-button-row">
+            <button [disabled]="checkoutForm.invalid" class="button" type="submit" mat-raised-button color="accent" >EDITAR CONTACTO</button>
+        </div>
+    </table>
+</form>

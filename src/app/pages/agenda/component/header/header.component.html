@@ -1,0 +1,6 @@
+<mat-toolbar color="primary">
+    <span>Agenda Telefonica</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="url_current == ''" mat-raised-button color="accent" [routerLink]="['add']" >Nuevo Contacto</button>
+    <button *ngIf="url_current != ''" mat-raised-button color="accent" [routerLink]="['agenda']" >Volver</button>
+</mat-toolbar>
