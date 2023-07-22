@@ -1,6 +1,7 @@
 <app-header />
 
 <table mat-table [dataSource]="contactos" class="mat-elevation-z8">
+
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> No. Id </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>

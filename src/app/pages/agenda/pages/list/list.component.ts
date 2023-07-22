@@ -13,27 +13,20 @@ export class ListComponent implements OnInit {
   constructor(
     private _service: ServicesService
   ) { 
-    this._service.listenToServer(this.connection.change).subscribe((change) =>{
-      this.onChange(change)
-    })
-    this._service.listenToServer(this.connection.create).subscribe((create) =>{
-      this.onCreate(create)
-    })
+
   }
 
   ngOnInit(): void {
-    
+
     this._service.getContacts().subscribe((response) => {
       this.contactos = response.data
     });
 
-    this._service.listenToServer(this.connection.change).subscribe((change) =>{
-      this.onChange(change)
+		this._service.getIOAll().subscribe((data: any) => {
+      this._service.getContacts().subscribe((response) => {
+        this.contactos = response.data
+      });
     })
-    this._service.listenToServer(this.connection.create).subscribe((create) =>{
-      this.onCreate(create)
-    })
-
   }
 
   mostrarColumnasTabla: string[] = ['id','name','phone','action'];
@@ -42,15 +35,7 @@ export class ListComponent implements OnInit {
   
   deleteContact(id:number) {
     this._service.deleteContact(id).subscribe((response) => {
-      this.contactos = this.contactos.filter(i => i.id != id);
+      this._service.emitIOAll();
     });
   }
-
-  onChange(change: any){
-    console.log("change",change)
-  }
-  onCreate(create: any){
-    console.log("create",create)
-  }
-
 }

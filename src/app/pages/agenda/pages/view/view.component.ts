@@ -55,13 +55,15 @@ export class ViewComponent implements OnInit {
     });
     
   }
-
   onSubmit(): void {
+
     let payload: Object = {
       contact:  this.checkoutForm.value,
       id: this._route.snapshot.paramMap.get('id')
     }
+
     this._service.editContact(payload).subscribe((response) => {
+      this._service.emitIOAll();
       this._router.navigate(['agenda']);
     });
   }

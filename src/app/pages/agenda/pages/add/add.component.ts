@@ -33,6 +33,7 @@ export class AddComponent {
 
   onSubmit(): void {
     this._service.createContact(this.checkoutForm.value).subscribe((response) => {
+      this._service.emitIOAll();
       this._router.navigate(['agenda']);
     });
   }
