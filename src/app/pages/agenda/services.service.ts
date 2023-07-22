@@ -1,16 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { contactInterface } from '../agenda/interface';
+import { contactInterface, connectionInterface } from '../agenda/interface';
+import * as socketIo from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
-
-  constructor(private _http: HttpClient) {}
-
+  
   url_test: string = "http://localhost:3000";
+  /* io = io(this.url_test,{
+    withCredentials: true,
+    autoConnect: true
+  }) */
+
+  private clientSocket: any;
+  constructor(private _http: HttpClient) {
+    this.clientSocket = socketIo.connect(this.url_test)
+  }
+
+  listenToServer(connection: any): Observable<any> {
+    return new Observable((suscribe) => {
+      this.clientSocket.on(connection, (data:any) => {
+        suscribe.next(data)
+      })
+    })
+  }
+
+  emitToServer(connection: any, data: contactInterface): void {}
 
   getContacts(): Observable<any> {
     return this._http.get(`${this.url_test}/contacts/lists`);

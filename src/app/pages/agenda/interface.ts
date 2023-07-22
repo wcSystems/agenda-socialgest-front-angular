@@ -12,3 +12,8 @@ export interface contactInterface {
     phone: number;
     email: string;
 }
+
+export interface connectionInterface {
+    change: string;
+    create: string;
+}
