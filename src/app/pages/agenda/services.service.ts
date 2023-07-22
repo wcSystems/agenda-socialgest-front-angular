@@ -9,7 +9,7 @@ import * as socketIo from 'socket.io-client';
 })
 export class ServicesService {
   
-  url_test: string = "http://localhost:3000";
+  url_test: string = "http://35.174.225.120";
   /* io = io(this.url_test,{
     withCredentials: true,
     autoConnect: true

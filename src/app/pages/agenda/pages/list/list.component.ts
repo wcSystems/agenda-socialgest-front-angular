@@ -22,9 +22,18 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this._service.getContacts().subscribe((response) => {
       this.contactos = response.data
     });
+
+    this._service.listenToServer(this.connection.change).subscribe((change) =>{
+      this.onChange(change)
+    })
+    this._service.listenToServer(this.connection.create).subscribe((create) =>{
+      this.onCreate(create)
+    })
+
   }
 
   mostrarColumnasTabla: string[] = ['id','name','phone','action'];
