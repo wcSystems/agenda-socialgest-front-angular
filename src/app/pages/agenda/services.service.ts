@@ -21,13 +21,13 @@ export class ServicesService {
 
 
   // emit event
-	emitIOAll() {
-		this.socket.emit('all');
+	emitIOAll(params:any,arg:any) {
+		this.socket.emit(params,arg);
 	} 
 
 	// listen event
-	getIOAll() {
-		return this.socket.fromEvent('all');
+	getIOAll(params:any) {
+		return this.socket.fromEvent(params);
 	}
 
 

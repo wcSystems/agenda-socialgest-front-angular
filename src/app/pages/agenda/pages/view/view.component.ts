@@ -63,7 +63,7 @@ export class ViewComponent implements OnInit {
     }
 
     this._service.editContact(payload).subscribe((response) => {
-      this._service.emitIOAll();
+      this._service.emitIOAll("edit",response.data);
       this._router.navigate(['agenda']);
     });
   }
